@@ -54,3 +54,15 @@ class Library:
                 self.payment_method.processPayment(fee)
                 return
         print("Book not found.")
+        
+if _name_ == "_main_":
+    payment = CardPayment()
+    library = Library(payment)
+
+    ebook = EBook("Python Basics", "John Doe", "E001", 5)
+    printed = PrintedBook("Advanced OOP", "Jane Smith", "P002", 5)
+    library.addBook(ebook)
+    library.addBook(printed)
+
+    library.issueBook("Python Basics", 3)
+    library.issueBook("Advanced OOP", 3)
