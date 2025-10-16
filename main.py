@@ -13,12 +13,26 @@ class Book:
 
     def calculateLateFee(self, daysLate):
         return daysLate * self.__dailyLateFee
+        
 # Inheritance and Polymorphism
 class EBook(Book):
     def calculateLateFee(self, daysLate):
         return daysLate * 0.5 * 1
 
-
 class PrintedBook(Book):
     def calculateLateFee(self, daysLate):
         return daysLate * 2
+        
+# Interface Segregation and Dependency Inversion
+class PaymentMethod(ABC):
+    @abstractmethod
+    def processPayment(self, amount):
+        pass
+
+class CashPayment(PaymentMethod):
+    def processPayment(self, amount):
+        print(f"Paid Rs.{amount} in cash.")
+
+class CardPayment(PaymentMethod):
+    def processPayment(self, amount):
+        print(f"Paid Rs.{amount} by card.")
