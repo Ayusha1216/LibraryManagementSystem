@@ -13,3 +13,12 @@ class Book:
 
     def calculateLateFee(self, daysLate):
         return daysLate * self.__dailyLateFee
+# Inheritance and Polymorphism
+class EBook(Book):
+    def calculateLateFee(self, daysLate):
+        return daysLate * 0.5 * 1
+
+
+class PrintedBook(Book):
+    def calculateLateFee(self, daysLate):
+        return daysLate * 2
