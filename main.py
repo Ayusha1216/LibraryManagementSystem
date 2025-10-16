@@ -36,3 +36,21 @@ class CashPayment(PaymentMethod):
 class CardPayment(PaymentMethod):
     def processPayment(self, amount):
         print(f"Paid Rs.{amount} by card.")
+        
+# Library class Single Responsibility and Dependency Injection
+class Library:
+    def __init__(self, payment_method: PaymentMethod):
+        self.books = []
+        self.payment_method = payment_method
+
+    def addBook(self, book: Book):
+        self.books.append(book)
+
+    def issueBook(self, book_title, daysLate):
+        for book in self.books:
+            if book.get_title() == book_title:
+                fee = book.calculateLateFee(daysLate)
+                print(f"{book_title} returned late. Late fee: Rs.{fee}")
+                self.payment_method.processPayment(fee)
+                return
+        print("Book not found.")
